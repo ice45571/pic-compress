@@ -1,6 +1,4 @@
 package com.github.ice45571.piccompress.action
-
-import com.github.ice45571.piccompress.Helper
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 
@@ -12,6 +10,6 @@ import com.intellij.openapi.actionSystem.AnActionEvent
  */
 class ApiKeysAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
-        InputApiKeysDialog(Helper.getApiKeysFile()).showAndGet()
+        InputApiKeysDialog().showAndGet()
     }
 }

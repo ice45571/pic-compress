@@ -1,5 +1,6 @@
 package com.github.ice45571.piccompress.action
 
+import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.ui.DialogWrapper
 import java.awt.BorderLayout
 import java.awt.Dimension
@@ -14,13 +15,14 @@ import javax.swing.JTextArea
  * @Author: icewei
  * @Date: 2021/1/14 7:30 下午
  */
-class InputApiKeysDialog(val apiKeysFile: File) : DialogWrapper(true) {
+class InputApiKeysDialog() : DialogWrapper(true) {
 
     private lateinit var apiKeysTextArea: JTextArea
 
     override fun createCenterPanel(): JComponent? {
         val dialogPanel = JPanel(BorderLayout())
-        apiKeysTextArea = JTextArea(apiKeysFile.readText())
+        apiKeysTextArea =
+            JTextArea(PropertiesComponent.getInstance().getValue("keys", "J9vrxwT9vppN03X2KgCP2LHJ22KC1m3v"))
         apiKeysTextArea.preferredSize = Dimension(500, 500)
         dialogPanel.add(apiKeysTextArea, BorderLayout.CENTER)
         return dialogPanel
@@ -35,7 +37,7 @@ class InputApiKeysDialog(val apiKeysFile: File) : DialogWrapper(true) {
 
     //点击保存按钮时弹出保存成功信息
     override fun doOKAction() {
-        apiKeysFile.writeText(apiKeysTextArea.text)
+        PropertiesComponent.getInstance().setValue("keys", apiKeysTextArea.text)
         super.doOKAction()
     }
 

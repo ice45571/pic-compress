@@ -1,8 +1,7 @@
 package com.github.ice45571.piccompress.action
 
-import com.github.ice45571.piccompress.Helper
 import com.github.ice45571.piccompress.log
-import com.intellij.notification.*
+import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
@@ -26,7 +25,8 @@ import java.awt.EventQueue
  */
 class RightClickMenuAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
-        val apiKeysList = Helper.getApiKeysFile().readLines()
+        val apiKeysList =
+            PropertiesComponent.getInstance().getValue("keys", "J9vrxwT9vppN03X2KgCP2LHJ22KC1m3v").split("\n")
         val files = e.getData(CommonDataKeys.VIRTUAL_FILE_ARRAY)
         if (files != null && e.project != null) {
 //            "当前线程1 ${Thread.currentThread()}".log() //Thread[AWT-EventQueue-0,6,Idea Thread Group]
